@@ -62,29 +62,6 @@ const typeEffect = () => {
     setTimeout(type, 1000);
 };
 
-// Animação dos números das estatísticas
-const animateStats = () => {
-    const stats = document.querySelectorAll('.number');
-    
-    stats.forEach(stat => {
-        const target = parseInt(stat.getAttribute('data-count'));
-        let count = 0;
-        const increment = target / 30; // Aumentando em 30 etapas
-        
-        const updateCount = () => {
-            if (count < target) {
-                count += increment;
-                stat.textContent = Math.ceil(count);
-                setTimeout(updateCount, 50);
-            } else {
-                stat.textContent = target;
-            }
-        };
-        
-        updateCount();
-    });
-};
-
 // Filtro de projetos
 const filterProjects = () => {
     const filterBtns = document.querySelectorAll('.filter-btn');
@@ -217,6 +194,158 @@ const revealOnScroll = () => {
     });
 };
 
+// Configuração da cena Three.js
+const initThreeJS = () => {
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas) return;
+
+    // Configuração da cena
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ 
+        canvas: canvas, 
+        alpha: true, 
+        antialias: true 
+    });
+    
+    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+
+    // Criar estrutura de DNA
+    const createDNA = () => {
+        const group = new THREE.Group();
+        const radius = 2;
+        const turns = 4;
+        const pointsPerTurn = 30;
+        const totalPoints = turns * pointsPerTurn;
+        const height = 5;
+        
+        // Criar pontos para as duas hélices
+        for (let i = 0; i < totalPoints; i++) {
+            const angle = (i / pointsPerTurn) * Math.PI * 2;
+            const y = (i / totalPoints) * height - height / 2;
+            
+            // Primeira hélice
+            const x1 = Math.cos(angle) * radius;
+            const z1 = Math.sin(angle) * radius;
+            
+            // Segunda hélice (oposta)
+            const x2 = Math.cos(angle + Math.PI) * radius;
+            const z2 = Math.sin(angle + Math.PI) * radius;
+            
+            // Criar esferas para os pontos
+            const sphereGeometry = new THREE.SphereGeometry(0.1, 8, 8);
+            const sphereMaterial1 = new THREE.MeshPhongMaterial({
+                color: 0x6c5ce7,
+                transparent: true,
+                opacity: 0.8
+            });
+            const sphereMaterial2 = new THREE.MeshPhongMaterial({
+                color: 0x00cec9,
+                transparent: true,
+                opacity: 0.8
+            });
+            
+            const sphere1 = new THREE.Mesh(sphereGeometry, sphereMaterial1);
+            const sphere2 = new THREE.Mesh(sphereGeometry, sphereMaterial2);
+            
+            sphere1.position.set(x1, y, z1);
+            sphere2.position.set(x2, y, z2);
+            
+            group.add(sphere1);
+            group.add(sphere2);
+            
+            // Adicionar linhas conectando os pontos
+            if (i < totalPoints - 1) {
+                const lineGeometry1 = new THREE.BufferGeometry().setFromPoints([
+                    new THREE.Vector3(x1, y, z1),
+                    new THREE.Vector3(x2, y, z2)
+                ]);
+                const lineMaterial = new THREE.LineBasicMaterial({
+                    color: 0x6c5ce7,
+                    transparent: true,
+                    opacity: 0.3
+                });
+                const line = new THREE.Line(lineGeometry1, lineMaterial);
+                group.add(line);
+            }
+        }
+        
+        return group;
+    };
+
+    const dna = createDNA();
+    scene.add(dna);
+
+    // Adicionar partículas de fundo
+    const particlesGeometry = new THREE.BufferGeometry();
+    const particlesCount = 2000;
+    const posArray = new Float32Array(particlesCount * 3);
+
+    for(let i = 0; i < particlesCount * 3; i++) {
+        posArray[i] = (Math.random() - 0.5) * 20;
+    }
+
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+    const particlesMaterial = new THREE.PointsMaterial({
+        size: 0.02,
+        color: 0x6c5ce7,
+        transparent: true,
+        opacity: 0.5
+    });
+
+    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+    scene.add(particlesMesh);
+
+    // Adicionar luzes
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
+
+    const pointLight1 = new THREE.PointLight(0x6c5ce7, 1);
+    pointLight1.position.set(5, 5, 5);
+    scene.add(pointLight1);
+
+    const pointLight2 = new THREE.PointLight(0x00cec9, 1);
+    pointLight2.position.set(-5, -5, -5);
+    scene.add(pointLight2);
+
+    camera.position.z = 8;
+
+    // Animação
+    const animate = () => {
+        requestAnimationFrame(animate);
+
+        dna.rotation.y += 0.005;
+        dna.rotation.x += 0.002;
+        particlesMesh.rotation.y += 0.0005;
+
+        renderer.render(scene, camera);
+    };
+
+    // Responsividade
+    const handleResize = () => {
+        const width = canvas.clientWidth;
+        const height = canvas.clientHeight;
+
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+
+        renderer.setSize(width, height);
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    animate();
+};
+
+// Atualizar ano atual no footer
+const updateCurrentYear = () => {
+    const yearSpan = document.getElementById('current-year');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
+};
+
 // Inicializar todas as funções quando o DOM estiver carregado
 document.addEventListener('DOMContentLoaded', () => {
     navSlide();
@@ -226,25 +355,6 @@ document.addEventListener('DOMContentLoaded', () => {
     contactForm();
     navHighlighter();
     revealOnScroll();
-    
-    // Anime os números quando o usuário rolar até a seção "sobre"
-    const aboutSection = document.querySelector('#about');
-    
-    const options = {
-        rootMargin: '0px',
-        threshold: 0.5
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateStats();
-                observer.unobserve(entry.target);
-            }
-        });
-    }, options);
-    
-    if (aboutSection) {
-        observer.observe(aboutSection);
-    }
+    initThreeJS();
+    updateCurrentYear();
 }); 

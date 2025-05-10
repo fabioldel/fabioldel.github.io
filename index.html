@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -17,8 +18,8 @@
             <ul class="nav-links">
                 <li><a href="#home" class="active">Início</a></li>
                 <li><a href="#about">Sobre</a></li>
-                <li><a href="#projects">Projetos</a></li>
                 <li><a href="#skills">Habilidades</a></li>
+                <li><a href="#projects">Soft Skills</a></li>
                 <li><a href="#contact">Contato</a></li>
             </ul>
             <div class="burger">
@@ -39,9 +40,7 @@
                 </div>
             </div>
             <div class="hero-image">
-                <div class="hexagon">
-                    <div class="inner-hex"></div>
-                </div>
+                <canvas id="hero-canvas"></canvas>
             </div>
         </section>
 
@@ -51,89 +50,6 @@
                 <div class="about-text">
                     <p>Olá! Sou um desenvolvedor .NET com vasta experiência em desenvolvimento de soluções empresariais. Especializado em C#, SQL Server, Oracle Database e tecnologias Microsoft, tenho criado aplicações robustas e escaláveis ao longo da minha carreira.</p>
                     <p>Com mais de 25 anos de experiência em sistemas ERP da Totvs (Linha RM), desenvolvi habilidades avançadas em integração de sistemas, otimização de banco de dados e implementação de soluções em nuvem com Microsoft Azure.</p>
-                    <a href="#" class="btn primary">Download CV</a>
-                </div>
-                <div class="about-card">
-                    <div class="card-content">
-                        <div class="stat">
-                            <span class="number" data-count="25">0</span>
-                            <span class="label">Anos de Experiência</span>
-                        </div>
-                        <div class="stat">
-                            <span class="number" data-count="50">0</span>
-                            <span class="label">Projetos Concluídos</span>
-                        </div>
-                        <div class="stat">
-                            <span class="number" data-count="15">0</span>
-                            <span class="label">Tecnologias Dominadas</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="projects-section">
-            <h2 class="section-title">Projetos</h2>
-            <div class="project-filters">
-                <button class="filter-btn active" data-filter="all">Todos</button>
-                <button class="filter-btn" data-filter="dotnet">.NET</button>
-                <button class="filter-btn" data-filter="erp">ERP</button>
-                <button class="filter-btn" data-filter="cloud">Cloud</button>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card" data-category="dotnet">
-                    <div class="project-img">
-                        <img src="https://via.placeholder.com/350x200" alt="Projeto 1">
-                    </div>
-                    <div class="project-info">
-                        <h3>Sistema de Gestão Empresarial</h3>
-                        <p>Aplicação web em C# e .NET com SQL Server para gerenciamento corporativo</p>
-                        <div class="project-tags">
-                            <span>C#</span>
-                            <span>.NET</span>
-                            <span>SQL Server</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" target="_blank"><i class="fas fa-eye"></i></a>
-                            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card" data-category="erp">
-                    <div class="project-img">
-                        <img src="https://via.placeholder.com/350x200" alt="Projeto 2">
-                    </div>
-                    <div class="project-info">
-                        <h3>Integração ERP Totvs RM</h3>
-                        <p>Projeto de integração de múltiplos módulos do ERP Totvs RM com sistemas legados</p>
-                        <div class="project-tags">
-                            <span>Totvs RM</span>
-                            <span>Oracle</span>
-                            <span>C#</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" target="_blank"><i class="fas fa-eye"></i></a>
-                            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card" data-category="cloud">
-                    <div class="project-img">
-                        <img src="https://via.placeholder.com/350x200" alt="Projeto 3">
-                    </div>
-                    <div class="project-info">
-                        <h3>Migração para Azure</h3>
-                        <p>Migração de aplicações on-premise para a plataforma Azure com otimização de custos</p>
-                        <div class="project-tags">
-                            <span>Azure</span>
-                            <span>Cloud</span>
-                            <span>DevOps</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" target="_blank"><i class="fas fa-eye"></i></a>
-                            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -145,97 +61,79 @@
                     <h3>Desenvolvimento</h3>
                     <div class="skill-items">
                         <div class="skill-item">
-                            <div class="skill-info">
-                                <span>C#</span>
-                                <span>95%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 95%;"></div>
-                            </div>
+                            <i class="fab fa-microsoft"></i>
+                            <h3>.NET C#</h3>
+                            <p>Desenvolvimento de aplicações robustas e escaláveis com C# e .NET Framework, utilizando recursos avançados de segurança e performance</p>
+                            <a href="https://dotnet.microsoft.com/pt-br/" target="_blank" rel="noopener noreferrer">Conhecer</a>
                         </div>
                         <div class="skill-item">
-                            <div class="skill-info">
-                                <span>.NET Framework/Core</span>
-                                <span>90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 90%;"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span>ASP.NET MVC/Web API</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 85%;"></div>
-                            </div>
+                            <i class="fas fa-database"></i>
+                            <h3>SQL</h3>
+                            <p>Linguagem de programação declarativa para manipulação e consulta de dados em sistemas de gerenciamento de banco de dados relacionais</p>
+                            <a href="https://pt.wikipedia.org/wiki/SQL" target="_blank" rel="noopener noreferrer">Conhecer</a>
                         </div>
                     </div>
                 </div>
                 <div class="skill-category">
-                    <h3>Banco de Dados</h3>
+                    <h3>Tecnologias</h3>
                     <div class="skill-items">
                         <div class="skill-item">
-                            <div class="skill-info">
-                                <span>SQL Server</span>
-                                <span>95%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 95%;"></div>
-                            </div>
+                            <i class="fas fa-database"></i>
+                            <h3>SQL Server</h3>
+                            <p>Gerenciamento e otimização de bancos de dados relacionais com recursos avançados de segurança e performance</p>
+                            <a href="https://www.microsoft.com/pt-br/sql-server/sql-server-downloads" target="_blank" rel="noopener noreferrer">Conhecer</a>
                         </div>
                         <div class="skill-item">
-                            <div class="skill-info">
-                                <span>Oracle Database</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 85%;"></div>
-                            </div>
+                            <i class="fas fa-database"></i>
+                            <h3>Oracle Database</h3>
+                            <p>Administração e desenvolvimento de soluções empresariais com banco de dados de alta disponibilidade</p>
+                            <a href="https://www.oracle.com/br/database/" target="_blank" rel="noopener noreferrer">Conhecer</a>
                         </div>
                         <div class="skill-item">
-                            <div class="skill-info">
-                                <span>Entity Framework</span>
-                                <span>80%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 80%;"></div>
-                            </div>
+                            <i class="fas fa-cloud"></i>
+                            <h3>Microsoft Azure</h3>
+                            <p>Implementação e gerenciamento de infraestrutura em nuvem com serviços integrados e escaláveis</p>
+                            <a href="https://azure.microsoft.com/pt-br/explore/" target="_blank" rel="noopener noreferrer">Conhecer</a>
                         </div>
                     </div>
                 </div>
                 <div class="skill-category">
-                    <h3>Outras</h3>
+                    <h3>Soluções</h3>
                     <div class="skill-items">
                         <div class="skill-item">
-                            <div class="skill-info">
-                                <span>ERP Totvs RM</span>
-                                <span>98%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 98%;"></div>
-                            </div>
+                            <i class="fas fa-database"></i>
+                            <h3>ERP Totvs RM</h3>
+                            <p>Especialista em sistemas de gestão empresarial com mais de 25 anos de experiência em implementação e customização</p>
+                            <a href="https://www.totvs.com/sistema-de-gestao/totvs-backoffice-linha-rm/" target="_blank" rel="noopener noreferrer">Conhecer</a>
                         </div>
                         <div class="skill-item">
-                            <div class="skill-info">
-                                <span>Microsoft Azure</span>
-                                <span>80%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 80%;"></div>
-                            </div>
+                            <i class="fas fa-database"></i>
+                            <h3>BPM-S Totvs Fluig</h3>
+                            <p>Automação de processos de negócio e desenvolvimento de workflows personalizados para otimização operacional</p>
+                            <a href="https://www.totvs.com/fluig/" target="_blank" rel="noopener noreferrer">Conhecer</a>
                         </div>
                         <div class="skill-item">
-                            <div class="skill-info">
-                                <span>DevOps</span>
-                                <span>75%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 75%;"></div>
-                            </div>
+                            <i class="fas fa-signature"></i>
+                            <h3>DocuSign</h3>
+                            <p>Implementação de soluções de assinatura eletrônica e gestão documental com conformidade legal</p>
+                            <a href="https://www.docusign.com/pt-br/produtos/assinatura-eletronica" target="_blank" rel="noopener noreferrer">Conhecer</a>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects-section">
+            <h2 class="section-title">Soft Skills</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Além da minha habilidade técnica como engenheiro de software, desenvolvi ao longo de mais de 25 anos de carreira uma sólida experiência em liderança e gestão de equipes. Através da direção da Libra Software, empresa especializada em consultoria e desenvolvimento de soluções integradas, tenho a oportunidade de aplicar diariamente essas competências.</p>
+                    
+                    <p>Minha atuação vai além do desenvolvimento técnico, abrangendo a gestão de equipes de consultores e parceiros, com foco em resultados e desenvolvimento profissional. A Libra Software se destaca na implementação, consultoria e desenvolvimento de soluções integradas ou não integradas às plataformas Totvs (RM/Fluig) e DocuSign, além de desenvolver tecnologias próprias.</p>
+                    
+                    <p>Utilizo metodologias ágeis e frameworks próprios para desenvolvimento rápido de aplicações, sempre priorizando a otimização de processos através de automações inteligentes. Esta abordagem permite entregas mais eficientes e soluções mais robustas para nossos clientes.</p>
+                    
+                    <p>Minha experiência em gestão de relacionamentos com parceiros e clientes é fundamental para o sucesso dos projetos, garantindo que as soluções desenvolvidas atendam às necessidades específicas de cada cliente, sejam integradas ou customizadas. Esta combinação de habilidades técnicas e de gestão me permite oferecer um serviço completo e de alta qualidade.</p>
                 </div>
             </div>
         </section>
@@ -246,39 +144,17 @@
                 <div class="contact-info">
                     <div class="info-item">
                         <i class="fas fa-envelope"></i>
-                        <span>seuemail@exemplo.com</span>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-phone"></i>
-                        <span>+55 (11) 99999-9999</span>
+                        <span>fabio@librasoftware.com.br</span>
                     </div>
                     <div class="info-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>São Paulo, Brasil</span>
+                        <span>Brazil</span>
                     </div>
                     <div class="social-links">
-                        <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://github.com/fabioldel" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/fabiodelboni/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://x.com/fabioldel" target="_blank"><i class="fab fa-twitter"></i></a>
                     </div>
-                </div>
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <input type="text" id="name" placeholder="Seu Nome" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" placeholder="Seu Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="subject" placeholder="Assunto" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" placeholder="Sua Mensagem" required></textarea>
-                        </div>
-                        <button type="submit" class="btn primary">Enviar Mensagem</button>
-                    </form>
                 </div>
             </div>
         </section>
@@ -286,7 +162,7 @@
 
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2023 Fábio Delboni. Todos os direitos reservados.</p>
+            <p>&copy; <span id="current-year"></span> Fábio Delboni. Todos os direitos reservados.</p>
         </div>
     </footer>
 
