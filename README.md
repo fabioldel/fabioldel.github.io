@@ -1,4 +1,4 @@
-# Portfólio Pessoal - Fábio L. Del Poço
+# Portfólio Pessoal - Fábio Delboni
 
 Esta é uma página web elegante e tecnológica para o GitHub Pages, desenvolvida com HTML, CSS e JavaScript.
 
@@ -13,13 +13,13 @@ Esta é uma página web elegante e tecnológica para o GitHub Pages, desenvolvid
 - Animação de estatísticas
 - Navegação suave entre seções
 
-## Tecnologias Utilizadas
+## Tecnologias e Especialidades Destacadas
 
-- HTML5
-- CSS3 (com variáveis CSS e flexbox/grid)
-- JavaScript (ES6+)
-- Font Awesome para ícones
-- Google Fonts
+- Desenvolvimento .NET e C#
+- SQL Server e Oracle Database
+- ERP Totvs (Linha RM) - mais de 25 anos de experiência
+- Microsoft Azure e soluções Cloud
+- Integração de sistemas empresariais
 
 ## Instruções para Edição
 

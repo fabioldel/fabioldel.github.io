@@ -27,7 +27,7 @@ const typeEffect = () => {
     const typed = document.querySelector('.typed-text');
     if (!typed) return;
     
-    const words = ['Web', 'Mobile', 'Full Stack', 'de Software'];
+    const words = ['.NET', 'C#', 'SQL Server', 'Especialista ERP'];
     let wordIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
